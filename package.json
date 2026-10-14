@@ -1,0 +1,57 @@
+{
+  "name": "tezga-mcp",
+  "version": "0.1.0",
+  "description": "MCP server za Tezga eKasa: fiskalni računi, storno, refundacija i avans iz Claude, Cursor, Codex i drugih MCP klijenata, preko Tezga REST API-ja (V-PFR, bez hardvera).",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "tezga",
+    "fiskalizacija",
+    "fiscalization",
+    "serbia",
+    "esir",
+    "v-pfr",
+    "fiscal-receipt",
+    "claude",
+    "cursor"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "author": "GoSimple",
+  "homepage": "https://tezgafiskal.com/mcp-konektor",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoSimple-agency/tezga-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GoSimple-agency/tezga-mcp/issues"
+  },
+  "type": "module",
+  "bin": {
+    "tezga-mcp": "dist/stdio.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "NOTICE",
+    "server.json"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/stdio.js",
+    "start:http": "node dist/http.js",
+    "dev": "tsc --watch",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

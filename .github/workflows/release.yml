@@ -1,0 +1,28 @@
+name: Release
+
+# Publishing a GitHub release publishes the same version to npm through trusted
+# publishing (OIDC): no npm token is stored, and npm records a provenance attestation.
+# One-time setup on npm: add this repo and release.yml as a trusted publisher for tezga-mcp.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - name: Release tag must match package.json
+        run: test "v$(node -p 'require("./package.json").version')" = "${{ github.event.release.tag_name }}"
+      - run: npm install -g npm@latest
+      - run: npm ci
+      - run: npm run build
+      - run: npm publish --provenance --access public

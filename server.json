@@ -1,0 +1,38 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.gosimple-agency/tezga-mcp",
+  "description": "Tezga eKasa: fiskalni računi, storno, refundacija i avans iz MCP klijenata, preko V-PFR-a, bez hardvera (Srbija, ESIR IB 1597).",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/GoSimple-agency/tezga-mcp",
+    "source": "github"
+  },
+  "websiteUrl": "https://tezgafiskal.com/mcp-konektor",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "tezga-mcp",
+      "version": "0.1.0",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        {
+          "name": "TEZGA_API_KEY",
+          "description": "Tezga API ključ (tzg_...). Napravi ga u Podešavanja → Integracije.",
+          "isRequired": true,
+          "isSecret": true
+        },
+        {
+          "name": "TEZGA_BASE_URL",
+          "description": "Bazni URL API-ja; podrazumevano https://pos.narbiz.com",
+          "isRequired": false
+        }
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.tezgafiskal.com/mcp"
+    }
+  ]
+}
